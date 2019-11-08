@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://caption"
+        messagesPack="com.company.sample.web.screens.screen">
+    <data>
+        <collection id="userDc"
+                    class="com.haulmont.cuba.security.entity.User"
+                    view="user.browse">
+            <loader>
+                <query>
+                    <![CDATA[
+                        select u from sec$User u
+                    ]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <actions>
+        <action id="lookupAction"/>
+    </actions>
+    <facets>
+        <lookupScreen id="userLookup"
+                      openMode="DIALOG"
+                      entityClass="com.haulmont.cuba.security.entity.User"
+                      listComponent="usersTable"
+                      field="pickerField"
+                      container="userDc"
+                      onAction="lookupAction"/>
+
+        <lookupScreen id="tableLookup"
+                      openMode="DIALOG"
+                      field="pickerField"
+                      listComponent="usersTable"
+                      onButton="lookupBtn"/>
+
+        <lookupScreen id="fieldLookup"
+                      openMode="DIALOG"
+                      field="pickerField"/>
+
+    </facets>
+    <layout spacing="true"
+            expand="usersTable">
+        <hbox spacing="true">
+            <button action="lookupAction"
+                    caption="Open User Lookup (entity class)"/>
+
+            <button id="lookupBtn"
+                    caption="Open User Lookup (list component)"/>
+
+            <button id="pfLookupBtn"
+                    caption="Open User Lookup (PickerField)"/>
+        </hbox>
+
+        <pickerField id="pickerField"
+                     metaClass="sec$User"
+                     width="450px"/>
+
+        <table id="usersTable"
+               dataContainer="userDc"
+               width="100%">
+            <columns>
+                <column id="name"/>
+            </columns>
+            <rows/>
+        </table>
+    </layout>
+</window>

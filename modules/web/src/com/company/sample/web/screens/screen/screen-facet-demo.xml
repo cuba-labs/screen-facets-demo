@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://caption"
+        messagesPack="com.company.sample.web.screens.screen">
+    <facets>
+        <screen id="testScreen"
+                screenId="sample_TestScreen"
+                onButton="openTestScreen">
+            <properties>
+                <property name="num" value="42"/>
+            </properties>
+        </screen>
+    </facets>
+    <layout>
+        <button id="openTestScreen"
+                caption="Open Test Screen"/>
+    </layout>
+</window>

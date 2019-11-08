@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://caption"
+        messagesPack="com.company.sample.web.screens.editor">
+    <data>
+        <collection id="userDc"
+                    class="com.haulmont.cuba.security.entity.User"
+                    view="user.browse">
+            <loader>
+                <query>
+                    select u from sec$User u
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <actions>
+        <action id="action"/>
+    </actions>
+    <facets>
+        <editorScreen id="userEditor"
+                      openMode="DIALOG"
+                      entityClass="com.haulmont.cuba.security.entity.User"
+                      container="userDc"
+                      onAction="action"/>
+
+        <editorScreen id="roleEditor"
+                      editMode="EDIT"
+                      field="roleField"
+                      onButton="roleEditorBtn"/>
+    </facets>
+    <layout spacing="true"
+            expand="usersTable">
+        <hbox spacing="true">
+            <button action="action"
+                    caption="Create User"/>
+            <button id="roleEditorBtn"
+                    caption="Edit current Role"/>
+        </hbox>
+
+        <pickerField id="roleField"
+                     metaClass="sec$Role"/>
+
+        <table id="usersTable"
+               dataContainer="userDc"
+               width="100%">
+            <columns>
+                <column id="login"/>
+                <column id="firstName"/>
+                <column id="lastName"/>
+            </columns>
+            <rows/>
+        </table>
+    </layout>
+</window>
